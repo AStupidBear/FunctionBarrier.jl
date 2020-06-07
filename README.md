@@ -8,7 +8,7 @@
 
 ```julia
 a, b = 1, 2
-@macroexpand @barrier begin
+@barrier begin
     c = a + b
     d = c + 1
     c, d
@@ -19,10 +19,10 @@ is equivalent to
 
 ```julia
 a, b = 1, 2
-function var"##422"(a, b)
+function foo(a, b)
     c = a + b
     d = c + 1
     (c, d)
 end
-(c, d) = var"##422"(a, b)
+(c, d) = foo(a, b)
 ```
