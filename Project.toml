@@ -1,7 +1,7 @@
 name = "FunctionBarrier"
 uuid = "4c0387fe-3044-4118-bcfd-2d5824909cc7"
 authors = ["Yao Lu <luyaocns@gmail.com> and contributors"]
-version = "0.1.0"
+version = "0.1.1"
 
 [compat]
 julia = "1"

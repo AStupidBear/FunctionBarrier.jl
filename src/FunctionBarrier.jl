@@ -25,7 +25,7 @@ function wrap_barrier(module_, barrier_expression)
     fname = gensym()
     lastex = ex.args[end]
     args = map(makelet, captured_vars)
-    if lastex.head == :tuple && all(a -> a isa Symbol, lastex.args)
+    if lastex isa Symbol || lastex.head == :tuple && all(a -> a isa Symbol, lastex.args)
         retvar = lastex
     else
         retvar = gensym()
