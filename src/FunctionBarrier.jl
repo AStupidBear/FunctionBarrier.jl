@@ -20,12 +20,14 @@ end
 # Wrap `barrier_expression` in a `function` block to improve efficiency.
 function wrap_barrier(module_, barrier_expression)
     ex = macroexpand(module_, barrier_expression)
-    bound_vars, captured_vars = Var[], Var[]
+    bound_vars, captured_vars = [Var(:end, 0), Var(:begin, 0)], Var[]
     find_var_uses!(captured_vars, bound_vars, ex, 0)
     fname = gensym()
     lastex = ex.args[end]
     args = map(makelet, captured_vars)
-    if lastex isa Symbol || lastex.head == :tuple && all(a -> a isa Symbol, lastex.args)
+    if lastex isa Expr || last isa Expr &&
+        lastex.head == :tuple &&
+        all(a -> a isa Symbol, lastex.args)
         retvar = lastex
     else
         retvar = gensym()
