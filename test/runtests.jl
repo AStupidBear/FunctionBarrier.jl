@@ -3,6 +3,7 @@ using Test
 
 @testset "FunctionBarrier.jl" begin
     a, b = 1, 2
+    local c, d
     @barrier begin
         c = a + b
         d = c + 1
